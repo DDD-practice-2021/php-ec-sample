@@ -45,6 +45,9 @@ class Quote
 
     public function getPrice()
     {
+        $this->country = new Country($this->country);
+        $this->tax = $this->country->getTax();
+
         return $this->product->getBasePrice() + $this->product->getBasePrice() * $this->tax;
     }
 }

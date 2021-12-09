@@ -12,15 +12,13 @@ class QuoteTest extends TestCase
     public function test_should_get_price_with_tax_in_us()
     {
         $quote = new Quote();
-//        $mockRepo = \Mockery::mock(ProductFactory::class);
-//        $mockRepo->shouldReceive('findBySku')->andReturn(new Product("99HAS-123", 100));
-        $mockRepo = $this->getMockRepo();
 
+        $mockRepo = $this->getMockRepo();
         $product = $mockRepo->findBySku('99HAS-123');
+
         $price = $quote->create()
                         ->addProduct($product)
                         ->setCountry('US')
-                        ->setTax(0.1)
                         ->getPrice();
 
         $this->assertEquals(110, $price);
