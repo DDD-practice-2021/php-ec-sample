@@ -19,7 +19,7 @@ class QuoteTest extends TestCase
         $price = $quote->create()
                         ->addProduct($product)
                         ->setCountry('US')
-                        ->getPrice();
+                        ->getPriceIncludeTax();
 
         $this->assertEquals(110, $price);
     }
@@ -34,7 +34,7 @@ class QuoteTest extends TestCase
         $price = $quote->create()
             ->addProduct($product)
             ->setCountry('FR')
-            ->getPrice();
+            ->getPriceIncludeTax();
 
         $this->assertEquals(150, $price);
     }

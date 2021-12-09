@@ -38,10 +38,8 @@ class Quote
         return $this;
     }
 
-    public function getPrice()
+    public function getPriceIncludeTax()
     {
-//        $this->country = new Country($this->country);
-
         return $this->product->getBasePrice() + $this->product->getBasePrice() * $this->country->getTax();
     }
 }
