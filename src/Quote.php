@@ -33,20 +33,14 @@ class Quote
 
     public function setCountry(string $country)
     {
-        $this->country = $country;
+        $this->country = new Country($country);
+
         return $this;
     }
 
-//    public function setTax(float $rate)
-//    {
-//        $this->tax = $rate;
-//        return $this;
-//    }
-
     public function getPrice()
     {
-        $this->country = new Country($this->country);
-//        $this->tax = $this->country->getTax();
+//        $this->country = new Country($this->country);
 
         return $this->product->getBasePrice() + $this->product->getBasePrice() * $this->country->getTax();
     }
