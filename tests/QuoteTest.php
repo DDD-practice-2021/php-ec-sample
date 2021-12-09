@@ -9,7 +9,7 @@ use App\Quote;
 
 class QuoteTest extends TestCase
 {
-    public function test_should_get_simple_quote()
+    public function test_should_get_price_with_tax_in_us()
     {
         $quote = new Quote();
 
