@@ -13,10 +13,7 @@ class QuoteTest extends TestCase
     public function test_should_get_price_with_tax_in_us()
     {
         $quote = new Quote();
-
-        $mockRepo = $this->getMockRepo();
-
-        $product = $this->getMockProduct($mockRepo, 'US');
+        $product = $this->getMockProduct($this->getMockRepo(), 'US');
 
         $price = $quote->create()
                         ->addProduct($product)
@@ -28,9 +25,7 @@ class QuoteTest extends TestCase
     public function test_should_get_price_with_tax_in_fr()
     {
         $quote = new Quote();
-
-        $mockRepo = $this->getMockRepo();
-        $product = $this->getMockProduct($mockRepo, 'FR');
+        $product = $this->getMockProduct($this->getMockRepo(), 'FR');
 
         $price = $quote->create()
             ->addProduct($product)
