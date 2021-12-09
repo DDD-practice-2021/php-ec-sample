@@ -16,9 +16,7 @@ class QuoteTest extends TestCase
 
         $mockRepo = $this->getMockRepo();
 
-        $product = $mockRepo->findBySku('99HAS-123');
-        $product->setCountry('US')
-                ->getPriceIncludeTax();
+        $product = $this->getMockProduct($mockRepo, 'US');
 
         $price = $quote->create()
                         ->addProduct($product)
@@ -32,9 +30,7 @@ class QuoteTest extends TestCase
         $quote = new Quote();
 
         $mockRepo = $this->getMockRepo();
-        $product = $mockRepo->findBySku('99HAS-123');
-        $product->setCountry('FR')
-            ->getPriceIncludeTax();
+        $product = $this->getMockProduct($mockRepo, 'FR');
 
         $price = $quote->create()
             ->addProduct($product)
@@ -49,5 +45,18 @@ class QuoteTest extends TestCase
         $mockRepo->shouldReceive('findBySku')->andReturn(new Product("99HAS-123", 100));
 
         return $mockRepo;
+    }
+
+    /**
+     * @param $mockRepo
+     * @param $country
+     * @return mixed
+     */
+    public function getMockProduct($mockRepo, $country)
+    {
+        $product = $mockRepo->findBySku('99HAS-123');
+        $product->setCountry($country)
+            ->getPriceIncludeTax();
+        return $product;
     }
 }
