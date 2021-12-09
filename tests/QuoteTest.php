@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\PriceCalculator;
 use PHPUnit\Framework\TestCase;
 use App\Product;
 use App\ProductFactory;
@@ -14,12 +15,14 @@ class QuoteTest extends TestCase
         $quote = new Quote();
 
         $mockRepo = $this->getMockRepo();
+
         $product = $mockRepo->findBySku('99HAS-123');
+        $product->setCountry('US')
+                ->getPriceIncludeTax();
 
         $price = $quote->create()
                         ->addProduct($product)
-                        ->setCountry('US')
-                        ->getPriceIncludeTax();
+                        ->getQuotePrice();
 
         $this->assertEquals(110, $price);
     }
@@ -30,11 +33,12 @@ class QuoteTest extends TestCase
 
         $mockRepo = $this->getMockRepo();
         $product = $mockRepo->findBySku('99HAS-123');
+        $product->setCountry('FR')
+            ->getPriceIncludeTax();
 
         $price = $quote->create()
             ->addProduct($product)
-            ->setCountry('FR')
-            ->getPriceIncludeTax();
+            ->getQuotePrice();
 
         $this->assertEquals(150, $price);
     }

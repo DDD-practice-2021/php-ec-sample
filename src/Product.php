@@ -5,6 +5,10 @@ class Product
 {
     private $sku;
     private $base_price;
+    /**
+     * @var Country
+     */
+    private $country;
 
     /**
      * @param string $sku
@@ -47,5 +51,16 @@ class Product
     public function setSku(string $sku): void
     {
         $this->sku = $sku;
+    }
+
+    public function setCountry(string $country)
+    {
+        $this->country = new Country($country);
+        return $this;
+    }
+
+    public function getPriceIncludeTax()
+    {
+        return $this->getBasePrice() + $this->getBasePrice() * $this->country->getTax();
     }
 }
