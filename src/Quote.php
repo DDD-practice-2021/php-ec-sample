@@ -37,17 +37,17 @@ class Quote
         return $this;
     }
 
-    public function setTax(float $rate)
-    {
-        $this->tax = $rate;
-        return $this;
-    }
+//    public function setTax(float $rate)
+//    {
+//        $this->tax = $rate;
+//        return $this;
+//    }
 
     public function getPrice()
     {
         $this->country = new Country($this->country);
-        $this->tax = $this->country->getTax();
+//        $this->tax = $this->country->getTax();
 
-        return $this->product->getBasePrice() + $this->product->getBasePrice() * $this->tax;
+        return $this->product->getBasePrice() + $this->product->getBasePrice() * $this->country->getTax();
     }
 }

@@ -21,6 +21,9 @@ class Country
 
     public function getTax()
     {
-        return 0.1;
+        if($this->country == 'US')
+            return 0.1;
+        if($this->country == 'FR')
+            return 0.5;
     }
 }
