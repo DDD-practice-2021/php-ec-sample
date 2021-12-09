@@ -61,6 +61,6 @@ class Product
 
     public function getPriceIncludeTax()
     {
-        return $this->getBasePrice() + $this->getBasePrice() * $this->country->getTax();
+        return $this->getBasePrice() + $this->getBasePrice() * $this->country->getTaxRate();
     }
 }

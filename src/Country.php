@@ -19,7 +19,7 @@ class Country
         return $this;
     }
 
-    public function getTax()
+    public function getTaxRate()
     {
         $cty = array(
             'US' => 0.1,
