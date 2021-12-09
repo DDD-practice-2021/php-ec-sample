@@ -21,9 +21,11 @@ class Country
 
     public function getTax()
     {
-        if($this->country == 'US')
-            return 0.1;
-        if($this->country == 'FR')
-            return 0.5;
+        $cty = array(
+            'US' => 0.1,
+            'FR' => 0.5
+        );
+
+        return $cty[$this->country];
     }
 }
