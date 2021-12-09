@@ -24,6 +24,21 @@ class QuoteTest extends TestCase
         $this->assertEquals(110, $price);
     }
 
+    public function test_should_get_price_with_tax_in_fr()
+    {
+        $quote = new Quote();
+
+        $mockRepo = $this->getMockRepo();
+        $product = $mockRepo->findBySku('99HAS-123');
+
+        $price = $quote->create()
+            ->addProduct($product)
+            ->setCountry('FR')
+            ->getPrice();
+
+        $this->assertEquals(150, $price);
+    }
+
     private function getMockRepo()
     {
         $mockRepo = \Mockery::mock(ProductFactory::class);
